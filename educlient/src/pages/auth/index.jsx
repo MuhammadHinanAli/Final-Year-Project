@@ -14,11 +14,27 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 
 function AuthPage() {
-    const [activeTab, setActiveTab] = useState('signin')
+    const [activeTab, setActiveTab] = useState('signin');
+    const {
+        signInFormData,
+        setSignInFormData,
+        signUpFormData,
+        setSignUpFormData } = useContext(AuthContext);
 
     function handleTabChange(value) {
         setActiveTab(value);
     }
+
+    function checkIfSignInFormIsValid() {
+        return signInFormData && signInFormData.userEmail !== '' && signInFormData.password !== '';
+    }
+
+    function checkIfSignUpFormIsValid() {
+        return signUpFormData && signUpFormData.userName !== '' && signUpFormData.userEmail !== '' && signUpFormData.password !== '';
+    }
+
+    console.log(signInFormData);
+
 
     return (
         <div className="flex flex-col min-h-screen">
@@ -51,6 +67,9 @@ function AuthPage() {
                                 <CommonForm
                                     formControls={signInFormControls}
                                     buttonText={'Sign In'}
+                                    formData={signInFormData}
+                                    setFormData={setSignInFormData}
+                                    isButtonDisabled={!checkIfSignInFormIsValid()}
                                 />
                             </CardContent>
                         </Card>
@@ -67,6 +86,10 @@ function AuthPage() {
                                 <CommonForm
                                     formControls={signUpFormControls}
                                     buttonText={'Sign Up'}
+                                    formData={signUpFormData}
+                                    setFormData={setSignUpFormData}
+                                    isButtonDisabled={!checkIfSignUpFormIsValid()}
+
                                 />
                             </CardContent>
                         </Card>

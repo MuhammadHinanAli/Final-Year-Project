@@ -19,7 +19,7 @@ export const signUpFormControls = [
     placeholder: "Enter your password",
     type: "password",
     componentType: "input",
-  }
+  },
 ];
 
 export const signInFormControls = [
@@ -36,5 +36,16 @@ export const signInFormControls = [
     placeholder: "Enter your password",
     type: "password",
     componentType: "input",
-  }
+  },
 ];
+
+export const initialSignInFormData = {
+  userEmail: "",
+  password: "",
+};
+
+export const initialSignUpFormData = {
+  userName: "",
+  userEmail: "",
+  password: "",
+};

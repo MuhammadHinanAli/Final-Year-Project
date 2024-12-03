@@ -4,6 +4,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const app = express();
 const PORT = process.env.PORT || 4000;
+const authRoutes = require('./routes/auth-routes/index')
 
 const MONGO_URI = process.env.MONGO_URI;
 
@@ -22,6 +23,7 @@ mongoose
     .catch((e) => console.log(e));
 
 //ROUTES CONFIGURATION
+app.use('/auth', authRoutes);
 
 app.use((err, req, res, next) => {
     console.log(err.stack);

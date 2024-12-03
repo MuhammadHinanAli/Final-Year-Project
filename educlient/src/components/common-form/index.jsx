@@ -17,6 +17,7 @@ function CommonForm({
         formData={formData}
         setFormData={setFormData}
       />
+      <br/>
       <Button type="submit">
         {buttonText || "Submit"}
       </Button>

@@ -2,28 +2,29 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const authRoutes = require("./routes/auth-routes/index");
 const app = express();
 const PORT = process.env.PORT || 5000;
-const authRoutes = require('./routes/auth-routes/index')
-
 const MONGO_URI = process.env.MONGO_URI;
 
-cors({
-    origin: process.env.CLIENT_URL,
-    methods: ["GET", "POST", "DELETE", "PUT"],
-    allowedHeaders: ["Content-Type", "Authorization"]
-});
+app.use(
+    cors({
+        origin: process.env.CLIENT_URL,
+        methods: ["GET", "POST", "DELETE", "PUT"],
+        allowedHeaders: ["Content-Type", "Authorization"],
+    })
+);
 
 app.use(express.json());
 
-//MONGODB SET UP
+//database connection
 mongoose
     .connect(MONGO_URI)
     .then(() => console.log("mongodb is connected"))
     .catch((e) => console.log(e));
 
 //ROUTES CONFIGURATION
-app.use('/auth', authRoutes);
+app.use("/auth", authRoutes);
 
 app.use((err, req, res, next) => {
     console.log(err.stack);
@@ -33,8 +34,6 @@ app.use((err, req, res, next) => {
     });
 });
 
-
-//LISTENING PORT
 app.listen(PORT, () => {
-    console.log(`Server is now running on port ${PORT}`)
-});    
+    console.log(`Server is now running on port ${PORT}`);
+});  

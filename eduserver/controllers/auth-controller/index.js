@@ -1,6 +1,6 @@
 const User = require("../../models/User");
 const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
 
 const registerUser = async (req, res) => {
     const { userName, userEmail, password, role } = req.body;
@@ -40,32 +40,33 @@ const loginUser = async (req, res) => {
     if (!checkUser || !(await bcrypt.compare(password, checkUser.password))) {
         return res.status(401).json({
             success: false,
-            message: 'invalid credentials',
+            message: "Invalid credentials",
         });
-    };
+    }
 
-    const accessToken = jwt.sign({
-        _id: checkUser._id,
-        userName: checkUser.userName,
-        userEmail: checkUser.userEmail,
-        role: checkUser.role
-    },
+    const accessToken = jwt.sign(
+        {
+            _id: checkUser._id,
+            userName: checkUser.userName,
+            userEmail: checkUser.userEmail,
+            role: checkUser.role,
+        },
         "JWT_SECRET",
-        { expiresIn: '120m' }
+        { expiresIn: "120m" }
     );
 
     res.status(200).json({
         success: true,
-        message: "logged in successfully",
+        message: "Logged in successfully",
         data: {
             accessToken,
             user: {
                 _id: checkUser._id,
                 userName: checkUser.userName,
                 userEmail: checkUser.userEmail,
-                role: checkUser.role
-            }
-        }
+                role: checkUser.role,
+            },
+        },
     });
 };
 

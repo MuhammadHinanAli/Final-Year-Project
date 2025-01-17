@@ -11,6 +11,7 @@ import { useContext, useEffect, useState } from "react";
 function InstructorDashboardPage() {
 
     const [activeTab, setActiveTab] = useState("dashboard");
+    const { resetCredentials } = useContext(AuthContext)
 
     const menuItems = [
         {
@@ -34,7 +35,8 @@ function InstructorDashboardPage() {
     ];
 
     function handleLogout() {
-
+        resetCredentials();
+        sessionStorage.clear();
     }
 
     return <div className="flex h-full min-h-screen bg-gray-100">
@@ -46,6 +48,7 @@ function InstructorDashboardPage() {
                         menuItems.map(menuItem => <Button
                             className="w-full justify-start mb-2"
                             key={menuItem.value}
+                            variant={activeTab === menuItem.value ? "secondary" : "ghost"}
                             onClick={
                                 menuItem.value === "logout"
                                     ? handleLogout

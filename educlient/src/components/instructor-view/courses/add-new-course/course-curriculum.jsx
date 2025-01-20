@@ -11,7 +11,8 @@ import { useContext } from "react";
 function CourseCurriculum() {
 
     const { courseCurriculumFormData, setCourseCurriculumFormData, mediaUploadProgress,
-        setMediaUploadProgress } = useContext(InstructorContext);
+        setMediaUploadProgress, mediaUploadProgressPercentage,
+        setMediaUploadProgressPercentage } = useContext(InstructorContext);
 
     function handleNewLecture() {
         setCourseCurriculumFormData([

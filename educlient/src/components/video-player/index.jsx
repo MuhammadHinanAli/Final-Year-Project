@@ -129,7 +129,7 @@ function VideoPlayer({
             ref={playerContainerRef}
             className={`relative bg-gray-900 rounded-lg overflow-hidden shadow-2xl transition-all duration-300 ease-in-out 
                 ${isFullScreen ? "w-screen h-screen" : ""}
-            `}
+                `}
             style={{ width, height }}
             onMouseMove={handleMouseMove}
             onMouseLeave={() => setShowControls(false)}
@@ -210,8 +210,7 @@ function VideoPlayer({
                         </div>
                         <div className="flex items-center space-x-2">
                             <div className="text-white">
-                                {formatTime(played * (playerRef?.current?.getDuration() || 0))}/{" "}
-                                {formatTime(playerRef?.current?.getDuration() || 0)}
+                                {formatTime(played * (playerRef?.current?.getDuration() || 0))}/
                             </div>
                             <Button
                                 className="text-white bg-transparent hover:text-white hover:bg-gray-700"

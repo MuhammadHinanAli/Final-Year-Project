@@ -7,7 +7,7 @@ import { Switch } from "@/components/ui/switch";
 import VideoPlayer from "@/components/video-player";
 import { courseCurriculumInitialFormData } from "@/config";
 import { InstructorContext } from "@/context/instructor-context";
-import { mediaUploadService } from "@/services";
+import { mediaDeleteService, mediaUploadService } from "@/services";
 import { useContext } from "react";
 
 function CourseCurriculum() {
@@ -80,6 +80,26 @@ function CourseCurriculum() {
         }
     }
 
+    async function handleReplaceVideo(currentIndex) {
+        let cpyCourseCurriculumFormData = [...courseCurriculumFormData];
+        const getCurrentVideoPublicId =
+            cpyCourseCurriculumFormData[currentIndex].public_id;
+
+        const deleteCurrentMediaResponse = await mediaDeleteService(
+            getCurrentVideoPublicId
+        );
+
+        if (deleteCurrentMediaResponse?.success) {
+            cpyCourseCurriculumFormData[currentIndex] = {
+                ...cpyCourseCurriculumFormData[currentIndex],
+                videoUrl: "",
+                public_id: "",
+            };
+
+            setCourseCurriculumFormData(cpyCourseCurriculumFormData);
+        }
+    }
+
     function isCourseCurriculumFormDataValid() {
         return courseCurriculumFormData.every((item) => {
             return (
@@ -135,7 +155,7 @@ function CourseCurriculum() {
                                                 <VideoPlayer url={courseCurriculumFormData[index]?.videoUrl}
                                                     width="450px"
                                                     height="200px" />
-                                                <Button>Replace Video</Button>
+                                                <Button onClick={() => handleReplaceVideo(index)}>Replace Video</Button>
                                                 <Button className="bg-red-900">Delete Lecture</Button>
                                             </div> :
                                             <Input

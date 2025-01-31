@@ -80,7 +80,16 @@ function CourseCurriculum() {
         }
     }
 
-    console.log(courseCurriculumFormData);
+    function isCourseCurriculumFormDataValid() {
+        return courseCurriculumFormData.every((item) => {
+            return (
+                item &&
+                typeof item === "object" &&
+                item.title.trim() !== "" &&
+                item.videoUrl.trim() !== ""
+            );
+        });
+    }
 
     return (
         <Card>
@@ -88,7 +97,8 @@ function CourseCurriculum() {
                 <CardTitle>Create Course Cirriculum</CardTitle>
             </CardHeader>
             <CardContent>
-                <Button onClick={handleNewLecture}>Add Lecture</Button>
+                <Button disabled={!isCourseCurriculumFormDataValid() || mediaUploadProgress}
+                    onClick={handleNewLecture}>Add Lecture</Button>
                 {
                     mediaUploadProgress ?
                         <MediaProgressbar
@@ -123,8 +133,8 @@ function CourseCurriculum() {
                                         courseCurriculumFormData[index]?.videoUrl ?
                                             <div className="flex gap-3">
                                                 <VideoPlayer url={courseCurriculumFormData[index]?.videoUrl}
-                                                width="450px"
-                                                height="200px"/>
+                                                    width="450px"
+                                                    height="200px" />
                                                 <Button>Replace Video</Button>
                                                 <Button className="bg-red-900">Delete Lecture</Button>
                                             </div> :

@@ -35,11 +35,21 @@ function App() {
           />
         }
       />
-       <Route
+      <Route
         path="/instructor/create-new-course"
         element={
           <RouteGuard
-            element={<AddNewCoursePage/>}
+            element={<AddNewCoursePage />}
+            authenticated={auth?.authenticate}
+            user={auth?.user}
+          />
+        }
+      />
+      <Route
+        path="/instructor/edit-course/:courseId"
+        element={
+          <RouteGuard
+            element={<AddNewCoursePage />}
             authenticated={auth?.authenticate}
             user={auth?.user}
           />
@@ -58,7 +68,7 @@ function App() {
         <Route path="" element={<StudentHomePage />} />
         <Route path="home" element={<StudentHomePage />} />
       </Route>
-      <Route path="*" element={<NotFoundPage/>} />
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   )
 }

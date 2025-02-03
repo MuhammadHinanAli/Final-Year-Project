@@ -41,7 +41,7 @@ function InstructorCourses({ listOfCourses }) {
                                 ? listOfCourses.map((course) => (
                                     <TableRow>
                                         <TableCell className="font-medium">
-                                            {course?.title}
+                                            {course?.id}
                                         </TableCell>
                                         <TableCell>{course?.students?.length}</TableCell>
                                         <TableCell>

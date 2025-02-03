@@ -7,10 +7,14 @@ import { mediaUploadService } from "@/services";
 import { useContext } from "react";
 
 function CourseSettings() {
-
-    const { courseLandingFormData, setCourseLandingFormData, mediaUploadProgress,
-        setMediaUploadProgress, mediaUploadProgressPercentage,
-        setMediaUploadProgressPercentage } = useContext(InstructorContext);
+    const {
+        courseLandingFormData,
+        setCourseLandingFormData,
+        mediaUploadProgress,
+        setMediaUploadProgress,
+        mediaUploadProgressPercentage,
+        setMediaUploadProgressPercentage,
+    } = useContext(InstructorContext);
 
     async function handleImageUploadChange(event) {
         const selectedImage = event.target.files[0];
@@ -20,19 +24,20 @@ function CourseSettings() {
             imageFormData.append("file", selectedImage);
 
             try {
-                setMediaUploadProgress(true)
-                const response = await mediaUploadService(imageFormData, setMediaUploadProgressPercentage);
-
+                setMediaUploadProgress(true);
+                const response = await mediaUploadService(
+                    imageFormData,
+                    setMediaUploadProgressPercentage
+                );
                 if (response.success) {
                     setCourseLandingFormData({
                         ...courseLandingFormData,
                         image: response.data.url,
                     });
-                    setMediaUploadProgress(false)
+                    setMediaUploadProgress(false);
                 }
-
-            } catch (error) {
-                console.log(error);
+            } catch (e) {
+                console.log(e);
             }
         }
     }
@@ -43,13 +48,12 @@ function CourseSettings() {
                 <CardTitle>Course Settings</CardTitle>
             </CardHeader>
             <div className="p-4">
-                {
-                    mediaUploadProgress ?
-                        <MediaProgressbar
-                            isMediaUploading={mediaUploadProgress}
-                            progress={mediaUploadProgressPercentage}
-                        /> : null
-                }
+                {mediaUploadProgress ? (
+                    <MediaProgressbar
+                        isMediaUploading={mediaUploadProgress}
+                        progress={mediaUploadProgressPercentage}
+                    />
+                ) : null}
             </div>
             <CardContent>
                 {courseLandingFormData?.image ? (

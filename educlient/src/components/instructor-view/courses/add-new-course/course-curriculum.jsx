@@ -171,6 +171,7 @@ function CourseCurriculum() {
 
     async function handleDeleteLecture(currentIndex) {
         let cpyCourseCurriculumFormData = [...courseCurriculumFormData];
+
         const getCurrentSelectedVideoPublicId =
             cpyCourseCurriculumFormData[currentIndex].public_id;
 

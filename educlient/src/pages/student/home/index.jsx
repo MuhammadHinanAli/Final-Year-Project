@@ -49,7 +49,7 @@ function StudentHomePage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     {
                         studentViewCoursesList && studentViewCoursesList.length > 0 ?
-                            studentViewCoursesList.map(courseItem => <
+                            studentViewCoursesList.map(courseItem => (<
                                 div className="border rounded-lg overflow-hidden shadow cursor-pointer">
                                 <img
                                 src={courseItem?.image}
@@ -62,7 +62,7 @@ function StudentHomePage() {
                                 <p className="text-sm text-gray-700 mb-2">{courseItem?.instructorName}</p>
                                 <p className="font-bold text-[16px]">€{courseItem?.pricing}</p>
                                 </div>
-                            </div>) : <h1>No Courses Found</h1>
+                            </div>)) : <h1>No Courses Found</h1>
                     }
                 </div>
             </section>

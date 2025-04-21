@@ -160,7 +160,7 @@ function StudentViewCourseProgressPage() {
                     </div>
                 </div>
                 <div
-                    className={`fixed top-[138px] right-0 bottom-0 w-[400px] bg-[#1c1d1f] border-l border-gray-700 transition-all duration-300 ${isSideBarOpen ? "translate-x-0" : "translate-x-full"
+                    className={`fixed top-[64px] right-0 bottom-0 w-[400px] bg-[#1c1d1f] border-l border-gray-700 transition-all duration-300 ${isSideBarOpen ? "translate-x-0" : "translate-x-full"
                         }`}
                 >
                     <Tabs defaultValue="content" className="h-full flex flex-col">

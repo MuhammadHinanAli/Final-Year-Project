@@ -33,6 +33,15 @@ function StudentViewCommonHeader() {
                         Explore Courses
                     </Button>
                 </div>
+                <div className="flex items-center space-x-1">
+                    <Button variant="ghost"
+                        onClick={() => {
+                                navigate('/student/ai-bot');
+                        }}
+                        className="text-[14px] md:text-[16px] font-medium">
+                        AI Chatbot
+                    </Button>
+                </div>
             </div>
             <div className="flex items-center space-x-4">
                 <div className="flex gap-4 items-center">

@@ -1,3 +1,4 @@
+// Form controls for the sign-up page
 export const signUpFormControls = [
   {
     name: "userName",
@@ -22,6 +23,7 @@ export const signUpFormControls = [
   },
 ];
 
+// Form controls for the sign-in page
 export const signInFormControls = [
   {
     name: "userEmail",
@@ -39,17 +41,20 @@ export const signInFormControls = [
   },
 ];
 
+// Initial form data for sign-in
 export const initialSignInFormData = {
   userEmail: "",
   password: "",
 };
 
+// Initial form data for sign-up
 export const initialSignUpFormData = {
   userName: "",
   userEmail: "",
   password: "",
 };
 
+// Available language options for course creation or filtering
 export const languageOptions = [
   { id: "english", label: "English" },
   { id: "spanish", label: "Spanish" },
@@ -63,12 +68,14 @@ export const languageOptions = [
   { id: "russian", label: "Russian" },
 ];
 
+// Options for course difficulty levels
 export const courseLevelOptions = [
   { id: "beginner", label: "Beginner" },
   { id: "intermediate", label: "Intermediate" },
   { id: "advanced", label: "Advanced" },
 ];
 
+// Categories available for course tagging
 export const courseCategories = [
   { id: "web-development", label: "Web Development" },
   { id: "backend-development", label: "Backend Development" },
@@ -82,6 +89,7 @@ export const courseCategories = [
   { id: "software-engineering", label: "Software Engineering" },
 ];
 
+// Form fields for creating a new course landing page
 export const courseLandingPageFormControls = [
   {
     name: "title",
@@ -150,6 +158,7 @@ export const courseLandingPageFormControls = [
   },
 ];
 
+// Default values for the course landing page form
 export const courseLandingInitialFormData = {
   title: "",
   category: "",
@@ -160,9 +169,10 @@ export const courseLandingInitialFormData = {
   pricing: "",
   objectives: "",
   welcomeMessage: "",
-  image: "",
+  image: "", // can be used for preview or uploading course thumbnail
 };
 
+// Default structure for a single curriculum item
 export const courseCurriculumInitialFormData = [
   {
     title: "",
@@ -172,6 +182,7 @@ export const courseCurriculumInitialFormData = [
   },
 ];
 
+// Options for sorting course listings
 export const sortOptions = [
   { id: "price-lowtohigh", label: "Price: Low to High" },
   { id: "price-hightolow", label: "Price: High to Low" },
@@ -179,6 +190,7 @@ export const sortOptions = [
   { id: "title-ztoa", label: "Title: Z to A" },
 ];
 
+// Filtering options grouped by category, level, and language
 export const filterOptions = {
   category: courseCategories,
   level: courseLevelOptions,

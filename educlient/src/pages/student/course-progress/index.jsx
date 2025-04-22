@@ -23,29 +23,38 @@ import Confetti from "react-confetti";
 import { useNavigate, useParams } from "react-router-dom";
 
 function StudentViewCourseProgressPage() {
+    // Hook for navigation between pages
     const navigate = useNavigate();
+
+    // Contexts for authentication and student data
     const { auth } = useContext(AuthContext);
     const { studentCurrentCourseProgress, setStudentCurrentCourseProgress } =
         useContext(StudentContext);
-    const [lockCourse, setLockCourse] = useState(false);
-    const [currentLecture, setCurrentLecture] = useState(null);
+
+    // State management for course view logic
+    const [lockCourse, setLockCourse] = useState(false); // Locks course if not purchased
+    const [currentLecture, setCurrentLecture] = useState(null); // Tracks the current lecture
     const [showCourseCompleteDialog, setShowCourseCompleteDialog] =
-        useState(false);
-    const [showConfetti, setShowConfetti] = useState(false);
-    const [isSideBarOpen, setIsSideBarOpen] = useState(true);
+        useState(false); // Controls showing completion dialog
+    const [showConfetti, setShowConfetti] = useState(false); // Controls showing confetti on completion
+    const [isSideBarOpen, setIsSideBarOpen] = useState(true); // Controls side bar visibility
+
+    // Fetch course ID from URL params
     const { id } = useParams();
 
+    // Fetch current course progress from the server
     async function fetchCurrentCourseProgress() {
         const response = await getCurrentCourseProgressService(auth?.user?._id, id);
         if (response?.success) {
             if (!response?.data?.isPurchased) {
-                setLockCourse(true);
+                setLockCourse(true); // Lock course if not purchased
             } else {
                 setStudentCurrentCourseProgress({
                     courseDetails: response?.data?.courseDetails,
                     progress: response?.data?.progress,
                 });
 
+                // If course is completed, show completion dialog and confetti
                 if (response?.data?.completed) {
                     setCurrentLecture(response?.data?.courseDetails?.curriculum[0]);
                     setShowCourseCompleteDialog(true);
@@ -54,10 +63,10 @@ function StudentViewCourseProgressPage() {
                     return;
                 }
 
+                // Determine the next lecture to be viewed based on progress
                 if (response?.data?.progress?.length === 0) {
                     setCurrentLecture(response?.data?.courseDetails?.curriculum[0]);
                 } else {
-                    console.log("logging here");
                     const lastIndexOfViewedAsTrue = response?.data?.progress.reduceRight(
                         (acc, obj, index) => {
                             return acc === -1 && obj.viewed ? index : acc;
@@ -75,6 +84,7 @@ function StudentViewCourseProgressPage() {
         }
     }
 
+    // Update course progress by marking the current lecture as viewed
     async function updateCourseProgress() {
         if (currentLecture) {
             const response = await markLectureAsViewedService(
@@ -84,11 +94,12 @@ function StudentViewCourseProgressPage() {
             );
 
             if (response?.success) {
-                fetchCurrentCourseProgress();
+                fetchCurrentCourseProgress(); // Refresh course progress after update
             }
         }
     }
 
+    // Reset course progress and allow rewatching the course
     async function handleRewatchCourse() {
         const response = await resetCourseProgressService(
             auth?.user?._id,
@@ -96,30 +107,33 @@ function StudentViewCourseProgressPage() {
         );
 
         if (response?.success) {
-            setCurrentLecture(null);
-            setShowConfetti(false);
-            setShowCourseCompleteDialog(false);
-            fetchCurrentCourseProgress();
+            setCurrentLecture(null); // Reset current lecture
+            setShowConfetti(false); // Stop confetti
+            setShowCourseCompleteDialog(false); // Close the completion dialog
+            fetchCurrentCourseProgress(); // Fetch updated course progress
         }
     }
 
+    // Initial data fetch when component is mounted or course ID changes
     useEffect(() => {
         fetchCurrentCourseProgress();
     }, [id]);
 
+    // Update course progress when the current lecture's progress reaches 100%
     useEffect(() => {
         if (currentLecture?.progressValue === 1) updateCourseProgress();
     }, [currentLecture]);
 
+    // Hide confetti after 15 seconds
     useEffect(() => {
         if (showConfetti) setTimeout(() => setShowConfetti(false), 15000);
     }, [showConfetti]);
 
-    console.log(currentLecture, "currentLecture");
-
     return (
         <div className="flex flex-col h-screen bg-[#1c1d1f] text-white">
-            {showConfetti && <Confetti />}
+            {showConfetti && <Confetti />} {/* Show confetti on course completion */}
+
+            {/* Header with navigation and course title */}
             <div className="flex items-center justify-between p-4 bg-[#1c1d1f] border-b border-gray-700">
                 <div className="flex items-center space-x-4">
                     <Button
@@ -143,11 +157,13 @@ function StudentViewCourseProgressPage() {
                     )}
                 </Button>
             </div>
+
+            {/* Main content area with video player and sidebar */}
             <div className="flex flex-1 overflow-hidden">
                 <div
-                    className={`flex-1 ${isSideBarOpen ? "mr-[400px]" : ""
-                        } transition-all duration-300`}
+                    className={`flex-1 ${isSideBarOpen ? "mr-[400px]" : ""} transition-all duration-300`}
                 >
+                    {/* Video Player */}
                     <VideoPlayer
                         width="100%"
                         height="500px"
@@ -159,6 +175,8 @@ function StudentViewCourseProgressPage() {
                         <h2 className="text-2xl font-bold mb-2">{currentLecture?.title}</h2>
                     </div>
                 </div>
+
+                {/* Sidebar with course content and overview */}
                 <div
                     className={`fixed top-[64px] right-0 bottom-0 w-[400px] bg-[#1c1d1f] border-l border-gray-700 transition-all duration-300 ${isSideBarOpen ? "translate-x-0" : "translate-x-full"
                         }`}
@@ -181,12 +199,14 @@ function StudentViewCourseProgressPage() {
                         <TabsContent value="content">
                             <ScrollArea className="h-full">
                                 <div className="p-4 space-y-4">
+                                    {/* List of course curriculum */}
                                     {studentCurrentCourseProgress?.courseDetails?.curriculum.map(
                                         (item) => (
                                             <div
                                                 className="flex items-center space-x-2 text-sm text-white font-bold cursor-pointer"
                                                 key={item._id}
                                             >
+                                                {/* Check if the lecture is viewed */}
                                                 {studentCurrentCourseProgress?.progress?.find(
                                                     (progressItem) => progressItem.lectureId === item._id
                                                 )?.viewed ? (
@@ -214,6 +234,8 @@ function StudentViewCourseProgressPage() {
                     </Tabs>
                 </div>
             </div>
+
+            {/* Dialogs for locked course and course completion */}
             <Dialog open={lockCourse}>
                 <DialogContent className="sm:w-[425px]">
                     <DialogHeader>

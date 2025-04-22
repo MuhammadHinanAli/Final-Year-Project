@@ -1,4 +1,3 @@
-// Importing necessary components and hooks
 import CommonForm from "@/components/common-form"; // Common form component for reusability
 import {
   Card,
@@ -15,10 +14,8 @@ import { useContext, useState } from "react"; // React hooks for state managemen
 import { Link } from "react-router-dom"; // Link component for routing
 
 function AuthPage() {
-  // State to manage the active tab (signin or signup)
   const [activeTab, setActiveTab] = useState("signin");
 
-  // Destructuring necessary values and functions from AuthContext
   const {
     signInFormData,
     setSignInFormData,
@@ -28,12 +25,10 @@ function AuthPage() {
     handleLoginUser,
   } = useContext(AuthContext);
 
-  // Function to handle tab change between Sign In and Sign Up
   function handleTabChange(value) {
     setActiveTab(value);
   }
 
-  // Function to validate if the Sign In form is filled out correctly
   function checkIfSignInFormIsValid() {
     return (
       signInFormData &&
@@ -42,7 +37,6 @@ function AuthPage() {
     );
   }
 
-  // Function to validate if the Sign Up form is filled out correctly
   function checkIfSignUpFormIsValid() {
     return (
       signUpFormData &&
@@ -52,73 +46,74 @@ function AuthPage() {
     );
   }
 
-  // Debug log to inspect the current state of signInFormData
-  console.log(signInFormData);
-
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Header with logo and app name */}
-      <header className="px-4 lg:px-6 h-14 flex items-center border-b">
-        <Link to={"/"} className="flex items-center justify-center">
-          <GraduationCap className="h-8 w-8 mr-4" /> {/* App logo */}
-          <span className="font-extrabold text-xl">EduQuest</span> {/* App name */}
+      <header className="px-4 lg:px-6 h-16 flex items-center justify-center border-b bg-white shadow-md">
+        <Link to={"/"} className="flex items-center">
+          <GraduationCap className="h-10 w-10 mr-4 text-indigo-600" />
+          <span className="font-extrabold text-2xl text-gray-800">EduQuest</span>
         </Link>
       </header>
 
-      {/* Main content area with tabs for Sign In and Sign Up */}
-      <div className="flex items-center justify-center min-h-screen bg-background">
+      <div className="flex items-center justify-center min-h-screen bg-gray-50 py-10">
         <Tabs
-          value={activeTab} // Controlled component for active tab
-          defaultValue="signin" // Default tab to show on initial load
-          onValueChange={handleTabChange} // Function to handle tab switch
-          className="w-full max-w-md" // Width constraints for the tabs container
+          value={activeTab}
+          defaultValue="signin"
+          onValueChange={handleTabChange}
+          className="w-full max-w-lg"
         >
-          <TabsList className="grid w-full grid-cols-2"> {/* List of tab options */}
-            <TabsTrigger value="signin">Sign In</TabsTrigger> {/* Sign In tab */}
-            <TabsTrigger value="signup">Sign Up</TabsTrigger> {/* Sign Up tab */}
+          <TabsList className="grid w-full grid-cols-2 gap-2 mb-4">
+            <TabsTrigger
+              value="signin"
+              className="py-2 px-4 rounded-md text-lg font-semibold transition-all duration-300 hover:bg-indigo-100 hover:text-indigo-600"
+            >
+              Sign In
+            </TabsTrigger>
+            <TabsTrigger
+              value="signup"
+              className="py-2 px-4 rounded-md text-lg font-semibold transition-all duration-300 hover:bg-indigo-100 hover:text-indigo-600"
+            >
+              Sign Up
+            </TabsTrigger>
           </TabsList>
 
-          {/* Content for Sign In tab */}
           <TabsContent value="signin">
-            <Card className="p-6 space-y-4"> {/* Card container for sign-in */}
+            <Card className="p-6 space-y-6 shadow-lg rounded-md bg-white">
               <CardHeader>
-                <CardTitle>Sign in to your account</CardTitle>
-                <CardDescription>
-                  Enter your email and password to access your account
+                <CardTitle className="text-xl font-semibold text-gray-700">Sign in to your account</CardTitle>
+                <CardDescription className="text-sm text-gray-500">
+                  Enter your email and password to access your account.
                 </CardDescription>
               </CardHeader>
-              <CardContent className="space-y-2">
-                {/* Common form for Sign In */}
+              <CardContent className="space-y-4">
                 <CommonForm
-                  formControls={signInFormControls} // Form controls for sign-in
-                  buttonText={"Sign In"} // Button text for sign-in
-                  formData={signInFormData} // Current form data for sign-in
-                  setFormData={setSignInFormData} // Function to update form data
-                  isButtonDisabled={!checkIfSignInFormIsValid()} // Disable button if form is invalid
-                  handleSubmit={handleLoginUser} // Submit function for sign-in
+                  formControls={signInFormControls}
+                  buttonText={"Sign In"}
+                  formData={signInFormData}
+                  setFormData={setSignInFormData}
+                  isButtonDisabled={!checkIfSignInFormIsValid()}
+                  handleSubmit={handleLoginUser}
                 />
               </CardContent>
             </Card>
           </TabsContent>
 
-          {/* Content for Sign Up tab */}
           <TabsContent value="signup">
-            <Card className="p-6 space-y-4"> {/* Card container for sign-up */}
+            <Card className="p-6 space-y-6 shadow-lg rounded-md bg-white">
               <CardHeader>
-                <CardTitle>Create a new account</CardTitle>
-                <CardDescription>
-                  Enter your details to get started
+                <CardTitle className="text-xl font-semibold text-gray-700">Create a new account</CardTitle>
+                <CardDescription className="text-sm text-gray-500">
+                  Enter your details to get started.
                 </CardDescription>
               </CardHeader>
-              <CardContent className="space-y-2">
-                {/* Common form for Sign Up */}
+              <CardContent className="space-y-4">
                 <CommonForm
-                  formControls={signUpFormControls} // Form controls for sign-up
-                  buttonText={"Sign Up"} // Button text for sign-up
-                  formData={signUpFormData} // Current form data for sign-up
-                  setFormData={setSignUpFormData} // Function to update form data
-                  isButtonDisabled={!checkIfSignUpFormIsValid()} // Disable button if form is invalid
-                  handleSubmit={handleRegisterUser} // Submit function for sign-up
+                  formControls={signUpFormControls}
+                  buttonText={"Sign Up"}
+                  formData={signUpFormData}
+                  setFormData={setSignUpFormData}
+                  isButtonDisabled={!checkIfSignUpFormIsValid()}
+                  handleSubmit={handleRegisterUser}
                 />
               </CardContent>
             </Card>

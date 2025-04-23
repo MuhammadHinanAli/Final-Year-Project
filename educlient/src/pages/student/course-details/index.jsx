@@ -259,7 +259,7 @@ function StudentViewCourseDetailsPage() {
                             {/* Pricing and Buy Now button */}
                             <div className="mb-4">
                                 <span className="text-3xl font-bold">
-                                    ${studentViewCourseDetails?.pricing}
+                                    €{studentViewCourseDetails?.pricing}
                                 </span>
                             </div>
                             <Button onClick={handleCreatePayment} className="w-full">

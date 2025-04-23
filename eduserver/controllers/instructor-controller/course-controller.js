@@ -119,10 +119,44 @@ const updateCourseByID = async (req, res) => {
     }
 };
 
+// Controller to delete a course by ID
+const deleteCourseByID = async (req, res) => {
+    try {
+        const { id } = req.params; // Get course ID from the request parameters
+
+        // Attempt to delete the course by ID
+        const deletedCourse = await Course.findByIdAndDelete(id);
+
+        // If no course is found with the provided ID, return a 404 response
+        if (!deletedCourse) {
+            return res.status(404).json({
+                success: false,
+                message: "Course not found!", // Error message
+            });
+        }
+
+        // Return a success response after deletion
+        res.status(200).json({
+            success: true,
+            message: "Course deleted successfully", // Success message
+            data: deletedCourse, // Optionally return the deleted course data
+        });
+    } catch (e) {
+        console.log(e); // Log the error for debugging
+        // If an error occurs, return a generic error response with status 500
+        res.status(500).json({
+            success: false,
+            message: "Some error occurred!", // Error message
+        });
+    }
+};
+
+
 // Export the controller functions to be used in the routes
 module.exports = {
     addNewCourse,
     getAllCourses,
     updateCourseByID,
     getCourseDetailsByID,
+    deleteCourseByID
 };

@@ -89,6 +89,14 @@ export async function updateCourseByIdService(id, formData) {
 }
 
 /**
+ * Delete a course by its ID (Instructor only).
+ */
+export async function deleteCourseByIdService(courseId) {
+  const { data } = await axiosInstance.delete(`/instructor/course/delete/${courseId}`);
+  return data;
+}
+
+/**
  * Upload multiple media files at once with progress tracking.
  */
 export async function mediaBulkUploadService(formData, onProgressCallback) {

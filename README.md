@@ -46,12 +46,12 @@ EduQuest is a full-featured Learning Management System (LMS) web application des
 
 ```bash
 eduquest/
-├── client/              # React frontend
+├── educlient/              # React frontend
 │   ├── components/
 │   ├── pages/
 │   ├── App.jsx
 │   └── ...
-├── server/              # Express backend
+├── eduserver/              # Express backend
 │   ├── models/
 │   ├── routes/
 │   ├── controllers/

@@ -76,11 +76,11 @@ EduQuest/
 
 ```bash
 # Clone the repo
-git clone https://github.com/yourusername/eduquest.git
+git clone https://github.com/MuhammadHinanAli/Final-Year-Project
 cd eduquest
 
 # Setup backend
-cd backend
+cd eduserver
 npm install
 cp .env.example .env
 # Edit the .env file with your Mongo URI, JWT Secret, Cloudinary & PayPal keys
@@ -89,9 +89,9 @@ cp .env.example .env
 npm run dev
 
 # Setup frontend
-cd ../frontend
+cd ../educlient
 npm install
-npm start
+npm run dev
 ```
 
 ---

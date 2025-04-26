@@ -30,7 +30,7 @@ function StudentViewAiChatbot() {
 
     return (
         <div className="max-w-3xl mx-auto mt-12 p-8 bg-white shadow-lg rounded-2xl">
-            <h1 className="text-3xl font-bold text-black mb-6 text-center">💬 Chat AI</h1>
+            <h1 className="text-3xl font-bold text-black mb-6 text-center">💬 EduBot Chat</h1>
 
             {/* Textarea where the user types their question */}
             <textarea

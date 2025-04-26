@@ -49,7 +49,7 @@ function StudentViewCommonHeader() {
                         }}
                         className="text-[14px] md:text-[16px] font-medium text-gray-700 hover:text-blue-600 transition-colors duration-300"
                     >
-                        AI Chatbot
+                        EduBot
                     </Button>
                 </div>
             </div>

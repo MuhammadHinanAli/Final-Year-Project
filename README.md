@@ -110,9 +110,9 @@ PAYPAL_SECRET_ID = //ADD YOUR DETAILS
 
 ## 🧠 AI Chatbot Integration
 
-This project uses OpenAI (ChatGPT API) or Google Dialogflow to power an intelligent assistant for students.
+This project uses GEMINI AI API to power an intelligent assistant for students.
 
-- Configure API keys in the backend
+- Configure API keys in the FRONTEND
 - Responses are context-aware and tailored to EduQuest's domain
 
 ---

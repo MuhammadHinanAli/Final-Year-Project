@@ -29,13 +29,8 @@ EduQuest is a comprehensive MERN stack-based Learning Management System designed
 
 ---
 
-## 📸 Screenshots
-
-> Include images like:
-> - Student Dashboard
-> - Course Creation Page
-> - Chatbot Interface
-> - Payment Workflow
+## 📸 Screencast
+https://youtu.be/iDyuk3JpTNM
 
 ---
 
@@ -43,18 +38,18 @@ EduQuest is a comprehensive MERN stack-based Learning Management System designed
 
 ```bash
 EduQuest/
-├── eduserver/
-│   ├── controllers/
-│   ├── models/
-│   ├── routes/
-│   ├── middleware/
-│   └── server.js
 ├── educlient/
 │   ├── src/
 │   │   ├── components/
 │   │   ├── pages/
 │   │   ├── context/
 │   │   └── App.js
+├── eduserver/
+│   ├── controllers/
+│   ├── models/
+│   ├── routes/
+│   ├── middleware/
+│   └── server.js
 ├── public/
 ├── .env
 ├── package.json
@@ -101,13 +96,14 @@ npm run dev
 Create a `.env` file in the `/backend` folder:
 
 ```env
-MONGO_URI=your_mongo_connection_string
-JWT_SECRET=your_jwt_secret
-PAYPAL_CLIENT_ID=your_paypal_client_id
-PAYPAL_SECRET=your_paypal_secret
-CLOUDINARY_CLOUD_NAME=your_cloudinary_name
-CLOUDINARY_API_KEY=your_cloudinary_key
-CLOUDINARY_API_SECRET=your_cloudinary_secret
+PORT = 5000
+CLIENT_URL = http://localhost:5173
+MONGO_URI = //ADD YOUR DETAILS
+CLOUDINARY_CLOUD_NAME = //ADD YOUR DETAILS
+CLOUDINARY_API_KEY = //ADD YOUR DETAILS
+CLOUDINARY_API_SECRET = //ADD YOUR DETAILS
+PAYPAL_CLIENT_ID = //ADD YOUR DETAILS
+PAYPAL_SECRET_ID = //ADD YOUR DETAILS
 ```
 
 ---
@@ -128,28 +124,6 @@ This project uses OpenAI (ChatGPT API) or Google Dialogflow to power an intellig
 - Admin dashboard with analytics
 - Notifications and reminders
 - PWA (Progressive Web App) support
-
----
-
-## 🤝 Contributing
-
-Pull requests are welcome! For major changes, please open an issue first to discuss your proposed changes.
-
-```bash
-# Fork the repo
-# Create your feature branch
-git checkout -b feature/YourFeatureName
-
-# Commit and push
-git commit -m "Add: Your feature description"
-git push origin feature/YourFeatureName
-```
-
----
-
-## 📜 License
-
-This project is licensed under the MIT License. See `LICENSE` for more information.
 
 ---
 

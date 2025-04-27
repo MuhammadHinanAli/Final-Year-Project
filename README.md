@@ -8,7 +8,7 @@ EduQuest is a comprehensive MERN stack-based Learning Management System designed
 
 ### 🧑‍🏫 Lecturer Panel
 - Course creation, editing, and deletion
-- Upload course materials (videos, docs, etc.)
+- Upload course materials (videos, course thumbnail, etc.)
 - Set course price, category, difficulty, and language
 - Track student enrollment
 
@@ -16,7 +16,7 @@ EduQuest is a comprehensive MERN stack-based Learning Management System designed
 - Explore, purchase, and enroll in courses
 - Track course progress
 - View "My Courses" dashboard
-- Access downloadable materials
+- Access course materials
 - Chatbot assistant for instant support
 
 ### 💻 Tech Stack

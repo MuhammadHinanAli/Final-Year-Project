@@ -25,8 +25,7 @@ EduQuest is a comprehensive MERN stack-based Learning Management System designed
 - **Database**: MongoDB (Mongoose ODM)
 - **Media Storage**: Cloudinary
 - **Payments**: PayPal SDK
-- **AI Chatbot**: OpenAI / Dialogflow Integration
-
+- **AI Chatbot**: GOOGLE STUDIO AI / GEMINI
 ---
 
 ## 📸 Screencast
